@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "Space Grotesk";
+    --background: 0.12 0.01 260;
+    --foreground: 0.93 0.01 260;
+    --card: 0.16 0.015 260;
+    --card-foreground: 0.93 0.01 260;
+    --popover: 0.16 0.015 260;
+    --popover-foreground: 0.93 0.01 260;
+    --primary: 0.72 0.18 190;
+    --primary-foreground: 0.12 0.01 190;
+    --secondary: 0.22 0.02 260;
+    --secondary-foreground: 0.85 0.01 260;
+    --muted: 0.22 0.02 260;
+    --muted-foreground: 0.55 0.01 260;
+    --accent: 0.72 0.16 70;
+    --accent-foreground: 0.12 0.01 70;
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.93 0.01 25;
+    --border: 0.28 0.015 260;
+    --input: 0.28 0.015 260;
+    --ring: 0.72 0.18 190;
+    --radius: 0.75rem;
+    --chart-1: 0.55 0.18 280;
+    --chart-2: 0.52 0.15 160;
+    --chart-3: 0.6 0.14 75;
+    --chart-4: 0.5 0.13 220;
+    --chart-5: 0.58 0.15 55;
+    --sidebar: 0.18 0.015 260;
+    --sidebar-foreground: 0.93 0.01 260;
+    --sidebar-primary: 0.72 0.18 190;
+    --sidebar-primary-foreground: 0.12 0.01 190;
+    --sidebar-accent: 0.72 0.16 70;
+    --sidebar-accent-foreground: 0.12 0.01 70;
+    --sidebar-border: 0.28 0.015 260;
+    --sidebar-ring: 0.72 0.18 190;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), system-ui, sans-serif;
+  }
+}
+
+/* ---- Accessibility: focus ring for keyboard users ---- */
+*:focus-visible {
+  outline: 2px solid oklch(var(--primary));
+  outline-offset: 2px;
+}
+
+/* ---- Skip to content link ---- */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: -1;
+}
+.skip-to-content:focus {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  background: oklch(var(--foreground));
+  color: oklch(var(--background));
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 9999;
+  outline: 2px solid oklch(var(--primary));
+  outline-offset: 2px;
+}
+
+/* ---- Visually hidden (sr-only equivalent) ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

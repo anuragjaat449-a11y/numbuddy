@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Figtree:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* Base */
+    --background: 0.98 0.006 75;
+    --foreground: 0.22 0.02 55;
+    --card: 1 0 0;
+    --card-foreground: 0.22 0.02 55;
+    --popover: 1 0 0;
+    --popover-foreground: 0.22 0.02 55;
+
+    /* Primary */
+    --primary: 0.28 0.025 55;
+    --primary-foreground: 0.98 0.006 75;
+
+    /* Secondary */
+    --secondary: 0.94 0.008 75;
+    --secondary-foreground: 0.28 0.025 55;
+
+    /* Muted */
+    --muted: 0.94 0.008 75;
+    --muted-foreground: 0.55 0.02 60;
+
+    /* Accent */
+    --accent: 0.94 0.008 75;
+    --accent-foreground: 0.28 0.025 55;
+
+    /* Destructive */
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.98 0.006 75;
+
+    /* Border / Input / Ring */
+    --border: 0.88 0.012 70;
+    --input: 0.88 0.012 70;
+    --ring: 0.28 0.025 55;
+
+    /* Charts */
+    --chart-1: 0.6 0.15 260;
+    --chart-2: 0.6 0.15 160;
+    --chart-3: 0.75 0.16 80;
+    --chart-4: 0.6 0.15 210;
+    --chart-5: 0.65 0.2 15;
+
+    /* Sidebar */
+    --sidebar: 0.97 0.006 75;
+    --sidebar-foreground: 0.22 0.02 55;
+    --sidebar-primary: 0.28 0.025 55;
+    --sidebar-primary-foreground: 0.98 0.006 75;
+    --sidebar-accent: 0.94 0.008 75;
+    --sidebar-accent-foreground: 0.28 0.025 55;
+    --sidebar-border: 0.88 0.012 70;
+    --sidebar-ring: 0.28 0.025 55;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Breathing circle animation */
+.breathe-circle {
+  transition: width 1.4s ease-in-out, height 1.4s ease-in-out;
+}
+
+/* Progress dots */
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  transition: background-color 0.3s ease;
+}

@@ -1,0 +1,50 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = record {name: text;};
+type NumBuddySession = 
+ record {
+   categoryId: CategoryId;
+   date: text;
+   difficulty: text;
+   learnerId: text;
+   score: nat;
+   total: nat;
+ };
+type LearnerProfile = 
+ record {
+   createdAt: text;
+   id: text;
+   name: text;
+ };
+type CategoryId = text;
+type CatSessions = 
+ record {
+   categoryId: CategoryId;
+   learnerId: text;
+   sessions: vec NumBuddySession;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  bulkImportSessions: (catSessions: vec CatSessions) -> ();
+  deleteLearnerProfile: (id: text) -> ();
+  deleteSessionsByLearner: (learnerId: text) -> ();
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getLearnerProfiles: () -> (vec LearnerProfile) query;
+  getSessionsByCategory: (categoryId: text) -> (vec NumBuddySession) query;
+  getSessionsByLearner: (learnerId: text) -> (vec CatSessions) query;
+  getSessionsByUser: () -> (vec CatSessions) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  removeAllSessions: (user: principal) -> ();
+  removeSessions: (categoryId: text) -> ();
+  reset: () -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  saveLearnerProfile: (profile: LearnerProfile) -> ();
+  saveSession: (session: NumBuddySession) -> ();
+}
