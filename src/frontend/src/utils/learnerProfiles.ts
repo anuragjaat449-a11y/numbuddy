@@ -10,8 +10,8 @@ export const DEFAULT_PROFILE: LearnerProfile = {
   createdAt: "",
 };
 
-const PROFILES_KEY = "numbuddy_profiles";
-const ACTIVE_PROFILE_KEY = "numbuddy_active_profile";
+const PROFILES_KEY = "brainwarmup_profiles";
+const ACTIVE_PROFILE_KEY = "brainwarmup_active_profile";
 
 export function getProfiles(): LearnerProfile[] {
   try {
@@ -47,7 +47,7 @@ export function deleteProfile(id: string): void {
   if (id === "default") return;
   const profiles = getProfiles().filter((p) => p.id !== id);
   saveProfiles(profiles);
-  localStorage.removeItem(`numbuddy_progress_${id}`);
+  localStorage.removeItem(`brainwarmup_progress_${id}`);
   if (getActiveProfileId() === id) {
     setActiveProfileId("default");
   }
@@ -63,6 +63,6 @@ export function setActiveProfileId(id: string): void {
 
 export function getProgressKey(profileId: string): string {
   return profileId === "default"
-    ? "numbuddy_progress"
-    : `numbuddy_progress_${profileId}`;
+    ? "brainwarmup_progress"
+    : `brainwarmup_progress_${profileId}`;
 }

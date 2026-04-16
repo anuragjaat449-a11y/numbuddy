@@ -14,7 +14,7 @@ export interface ModuleStats {
   lastPlayed: string | null;
 }
 
-const DEFAULT_STORAGE_KEY = "numbuddy_progress";
+const DEFAULT_STORAGE_KEY = "brainwarmup_progress";
 const MAX_SESSIONS = 10;
 
 type ProgressData = Record<string, SessionRecord[]>;

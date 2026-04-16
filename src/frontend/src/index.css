@@ -1,57 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Figtree:wght@400;500;600;700&display=swap");
+
+/* Gradient utility for button accents */
+@layer utilities {
+  .gradient-warm {
+    background: linear-gradient(135deg, #d4a574 0%, #7ba3c4 100%);
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Space Grotesk";
-  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DM Sans";
-  src: url("/assets/fonts/DMSans.woff2") format("woff2");
-  font-display: swap;
-}
-
 @layer base {
   :root {
-    --font-display: "Space Grotesk";
-    --font-body: "DM Sans";
-    --font-mono: "Space Grotesk";
-    --background: 0.12 0.01 260;
-    --foreground: 0.93 0.01 260;
-    --card: 0.16 0.015 260;
-    --card-foreground: 0.93 0.01 260;
-    --popover: 0.16 0.015 260;
-    --popover-foreground: 0.93 0.01 260;
-    --primary: 0.72 0.18 190;
-    --primary-foreground: 0.12 0.01 190;
-    --secondary: 0.22 0.02 260;
-    --secondary-foreground: 0.85 0.01 260;
-    --muted: 0.22 0.02 260;
-    --muted-foreground: 0.55 0.01 260;
-    --accent: 0.72 0.16 70;
-    --accent-foreground: 0.12 0.01 70;
+    --font-display: "Fraunces";
+    --font-body: "Figtree";
+    --font-mono: "Figtree";
+    --background: 0.98 0.006 75;
+    --foreground: 0.22 0.02 55;
+    --card: 1 0 0;
+    --card-foreground: 0.22 0.02 55;
+    --popover: 1 0 0;
+    --popover-foreground: 0.22 0.02 55;
+    --primary: 0.28 0.025 55;
+    --primary-foreground: 0.98 0.006 75;
+    --secondary: 0.94 0.008 75;
+    --secondary-foreground: 0.28 0.025 55;
+    --muted: 0.94 0.008 75;
+    --muted-foreground: 0.55 0.015 60;
+    --accent: 0.72 0.15 50;
+    --accent-foreground: 0.98 0.006 75;
     --destructive: 0.55 0.2 25;
-    --destructive-foreground: 0.93 0.01 25;
-    --border: 0.28 0.015 260;
-    --input: 0.28 0.015 260;
-    --ring: 0.72 0.18 190;
-    --radius: 0.75rem;
-    --chart-1: 0.55 0.18 280;
-    --chart-2: 0.52 0.15 160;
-    --chart-3: 0.6 0.14 75;
-    --chart-4: 0.5 0.13 220;
-    --chart-5: 0.58 0.15 55;
-    --sidebar: 0.18 0.015 260;
-    --sidebar-foreground: 0.93 0.01 260;
-    --sidebar-primary: 0.72 0.18 190;
-    --sidebar-primary-foreground: 0.12 0.01 190;
-    --sidebar-accent: 0.72 0.16 70;
-    --sidebar-accent-foreground: 0.12 0.01 70;
-    --sidebar-border: 0.28 0.015 260;
-    --sidebar-ring: 0.72 0.18 190;
+    --destructive-foreground: 0.98 0.006 75;
+    --border: 0.88 0.012 70;
+    --input: 0.88 0.012 70;
+    --ring: 0.28 0.025 55;
+    --radius: 0.5rem;
+    --chart-1: 0.5 0.12 55;
+    --chart-2: 0.52 0.12 150;
+    --chart-3: 0.55 0.1 200;
+    --chart-4: 0.5 0.1 280;
+    --chart-5: 0.55 0.12 30;
+    --sidebar: 0.96 0.008 75;
+    --sidebar-foreground: 0.22 0.02 55;
+    --sidebar-primary: 0.28 0.025 55;
+    --sidebar-primary-foreground: 0.98 0.006 75;
+    --sidebar-accent: 0.72 0.15 50;
+    --sidebar-accent-foreground: 0.98 0.006 75;
+    --sidebar-border: 0.88 0.012 70;
+    --sidebar-ring: 0.28 0.025 55;
   }
 
   * {
@@ -72,7 +69,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-display), system-ui, sans-serif;
+    font-family: var(--font-display), Georgia, serif;
   }
 }
 

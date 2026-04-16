@@ -121,7 +121,7 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
     setResponses(newResponses);
     if (currentQ + 1 >= questions.length) {
       localStorage.setItem(
-        "numbuddy_assessment",
+        "brainwarmup_assessment",
         JSON.stringify({
           responses: newResponses,
           date: new Date().toISOString(),
@@ -286,7 +286,7 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
             className="text-sm font-medium"
             style={{
               color: "oklch(0.40 0.10 195)",
-              fontFamily: "Space Grotesk, system-ui, sans-serif",
+              fontFamily: "Fraunces, Georgia, serif",
             }}
           >
             Assessment
@@ -423,7 +423,7 @@ function AssessmentResults({
         <h1
           className="text-2xl md:text-3xl font-medium"
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
+            fontFamily: "Fraunces, Georgia, serif",
             color: "oklch(0.22 0.02 55)",
           }}
         >

@@ -27,114 +27,114 @@ const MODULES: {
     name: "Number Sense",
     description:
       "A dot pattern appears briefly. How many did you see? Compare numbers and group them.",
-    accent: "oklch(0.72 0.18 280)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.72 0.18 280 / 0.15)",
+    accent: "oklch(0.38 0.10 280)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.006 280)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.38 0.10 280 / 0.12)",
   },
   {
     id: "arith",
     name: "Arithmetic",
     description:
       "Solve addition and subtraction with step-by-step visual guides.",
-    accent: "oklch(0.72 0.18 190)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.72 0.18 190 / 0.15)",
+    accent: "oklch(0.38 0.10 200)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 200)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.38 0.10 200 / 0.12)",
   },
   {
     id: "sequence",
     name: "Counting & Sequences",
     description:
       "Fill in missing numbers, spot patterns, and understand tens and ones.",
-    accent: "oklch(0.72 0.16 70)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.72 0.16 70 / 0.15)",
+    accent: "oklch(0.42 0.10 55)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 55)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.42 0.10 55 / 0.12)",
   },
   {
     id: "money",
     name: "Money & Real Life",
     description:
       "Count coins and bills, read receipts, and solve everyday money problems.",
-    accent: "oklch(0.72 0.16 75)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.72 0.16 75 / 0.15)",
+    accent: "oklch(0.45 0.10 60)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 60)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.45 0.10 60 / 0.12)",
   },
   {
     id: "time",
     name: "Time & Scheduling",
     description:
       "Read clocks, figure out dates, and calculate how much time has passed.",
-    accent: "oklch(0.68 0.16 220)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.68 0.16 220 / 0.15)",
+    accent: "oklch(0.40 0.10 220)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 220)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.40 0.10 220 / 0.12)",
   },
   {
     id: "numberline",
     name: "Number Line",
     description:
       "Place numbers on a number line — one of the most effective exercises for number sense.",
-    accent: "oklch(0.70 0.18 330)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.70 0.18 330 / 0.15)",
+    accent: "oklch(0.40 0.10 300)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 300)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.40 0.10 300 / 0.12)",
   },
   {
     id: "estimation",
     name: "Estimation",
     description:
       "About how many? Practice judging quantities at a glance — a key everyday skill.",
-    accent: "oklch(0.68 0.16 195)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.68 0.16 195 / 0.15)",
+    accent: "oklch(0.38 0.10 195)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 195)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.38 0.10 195 / 0.12)",
   },
   {
     id: "stepseq",
     name: "Step-by-Step Sequencing",
     description:
       "Everyday procedures broken into steps. Practice following sequences — one step at a time.",
-    accent: "oklch(0.68 0.16 175)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.68 0.16 175 / 0.15)",
+    accent: "oklch(0.38 0.10 170)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 170)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.38 0.10 170 / 0.12)",
   },
   {
     id: "fractions",
     name: "Fractions",
     description:
       "Identify shaded fractions, compare them, and explore equivalents using visual fraction bars.",
-    accent: "oklch(0.72 0.18 130)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.72 0.18 130 / 0.15)",
+    accent: "oklch(0.40 0.10 140)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 140)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.40 0.10 140 / 0.12)",
   },
   {
     id: "measurement",
     name: "Measurement",
     description:
       "Read rulers, compare lengths and weights, and measure liquid in cups.",
-    accent: "oklch(0.68 0.16 210)",
-    bg: "oklch(0.17 0.015 260)",
-    bgHover: "oklch(0.20 0.02 260)",
-    border: "oklch(0.28 0.015 260)",
-    glow: "oklch(0.68 0.16 210 / 0.15)",
+    accent: "oklch(0.40 0.10 210)",
+    bg: "oklch(1 0 0)",
+    bgHover: "oklch(0.97 0.008 210)",
+    border: "oklch(0.88 0.012 70)",
+    glow: "oklch(0.40 0.10 210 / 0.12)",
   },
 ];
 
-function StudymoreMark() {
+function BrainWarmupMark() {
   return (
     <svg
       width="32"
@@ -144,23 +144,27 @@ function StudymoreMark() {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect width="36" height="36" rx="10" fill="oklch(0.72 0.18 190 / 0.15)" />
-      <text
-        x="18"
-        y="26"
-        textAnchor="middle"
-        fontSize="22"
-        fontWeight="700"
-        fontFamily="Space Grotesk, system-ui, sans-serif"
-        fill="oklch(0.72 0.18 190)"
-      >
-        Σ
-      </text>
+      <rect width="36" height="36" rx="10" fill="oklch(0.72 0.15 50 / 0.15)" />
+      {/* Brain outline */}
+      <path
+        d="M13 10c-1.8 0-3.5 1-4.2 2.6-.6 1.4-.3 2.9.5 4-.7.8-1.1 1.9-1 3.1.2 2.2 2 3.8 4 4.1.2 1.5 1.4 2.7 2.9 2.8.3 0 .6 0 .8-.1V27h4v-.5c.3.1.5.1.8.1 1.5-.1 2.7-1.3 2.9-2.8 2-.3 3.8-1.9 4-4.1.1-1.2-.3-2.3-1-3.1.8-1.1 1.1-2.6.5-4-.7-1.6-2.4-2.6-4.2-2.6-.7 0-1.4.2-2 .5-.9-.6-1.9-.9-3-.9s-2.1.3-3 .9c-.6-.3-1.3-.5-2-.5z"
+        fill="oklch(0.72 0.15 50)"
+        opacity="0.9"
+      />
+      {/* Highlight spark */}
+      <circle cx="25" cy="9" r="1.5" fill="oklch(0.60 0.18 60)" opacity="0.8" />
+      <path
+        d="M24 8l1 1M25 7v1"
+        stroke="oklch(0.60 0.18 60)"
+        strokeWidth="1"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
     </svg>
   );
 }
 
-const SUGGEST_DISMISS_KEY = "numbuddy_suggest_dismissed";
+const SUGGEST_DISMISS_KEY = "brainwarmup_suggest_dismissed";
 
 function SuggestionBanner({
   catId,
@@ -195,14 +199,14 @@ function SuggestionBanner({
       <div
         className="flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl text-sm"
         style={{
-          backgroundColor: "oklch(0.72 0.16 70 / 0.12)",
-          color: "oklch(0.72 0.16 70)",
-          border: "1px solid oklch(0.72 0.16 70 / 0.25)",
+          backgroundColor: "oklch(0.45 0.10 60 / 0.08)",
+          color: "oklch(0.38 0.08 55)",
+          border: "1px solid oklch(0.45 0.10 60 / 0.22)",
         }}
       >
-        <p className="flex-1" style={{ color: "oklch(0.75 0.01 260)" }}>
+        <p className="flex-1" style={{ color: "oklch(0.35 0.02 55)" }}>
           Based on your practice,{" "}
-          <strong style={{ color: "oklch(0.72 0.16 70)" }}>{moduleName}</strong>{" "}
+          <strong style={{ color: "oklch(0.38 0.08 55)" }}>{moduleName}</strong>{" "}
           could use some attention.
         </p>
         <div className="flex items-center gap-1 flex-shrink-0">
@@ -212,16 +216,16 @@ function SuggestionBanner({
             onClick={onGo}
             className="text-xs font-medium px-2.5 py-1 rounded-full transition-colors min-h-[32px]"
             style={{
-              backgroundColor: "oklch(0.72 0.16 70 / 0.2)",
-              color: "oklch(0.72 0.16 70)",
+              backgroundColor: "oklch(0.45 0.10 60 / 0.15)",
+              color: "oklch(0.38 0.08 55)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.72 0.16 70 / 0.32)";
+                "oklch(0.45 0.10 60 / 0.28)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.72 0.16 70 / 0.2)";
+                "oklch(0.45 0.10 60 / 0.15)";
             }}
           >
             Practise →
@@ -232,10 +236,10 @@ function SuggestionBanner({
             onClick={handleDismiss}
             aria-label="Dismiss suggestion"
             className="w-7 h-7 flex items-center justify-center rounded-full transition-colors ml-0.5"
-            style={{ color: "oklch(0.50 0.01 260)" }}
+            style={{ color: "oklch(0.55 0.015 60)" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.72 0.16 70 / 0.15)";
+                "oklch(0.45 0.10 60 / 0.12)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
@@ -290,7 +294,7 @@ export default function HomeScreen({
   return (
     <div
       className="flex flex-col min-h-screen"
-      style={{ backgroundColor: "oklch(0.11 0.01 260)" }}
+      style={{ backgroundColor: "oklch(0.98 0.006 75)" }}
     >
       {/* Header */}
       <header
@@ -300,8 +304,8 @@ export default function HomeScreen({
           paddingLeft: "1.5rem",
           paddingRight: "1.5rem",
           textAlign: "center",
-          borderBottom: "1px solid oklch(0.20 0.015 260)",
-          backgroundColor: "oklch(0.14 0.015 260)",
+          borderBottom: "1px solid oklch(0.88 0.012 70)",
+          backgroundColor: "oklch(1 0 0)",
         }}
       >
         <div
@@ -313,25 +317,26 @@ export default function HomeScreen({
             marginBottom: "0.5rem",
           }}
         >
-          <StudymoreMark />
+          <BrainWarmupMark />
           <h1
             style={{
-              fontFamily: "Space Grotesk, system-ui, sans-serif",
+              fontFamily: "Fraunces, Georgia, serif",
               fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
               fontWeight: 700,
               letterSpacing: "-0.025em",
-              color: "oklch(0.93 0.01 260)",
+              color: "oklch(0.22 0.02 55)",
               margin: 0,
             }}
           >
-            Studymore
+            Brain Warmup
           </h1>
         </div>
         <p
           style={{
             fontSize: "0.95rem",
-            color: "oklch(0.50 0.01 260)",
+            color: "oklch(0.55 0.015 60)",
             marginBottom: "1.5rem",
+            fontFamily: "Figtree, system-ui, sans-serif",
           }}
         >
           Practice at your own pace
@@ -356,21 +361,20 @@ export default function HomeScreen({
               borderRadius: "999px",
               fontWeight: 600,
               cursor: "pointer",
-              backgroundColor: "oklch(0.72 0.18 190)",
-              color: "oklch(0.12 0.01 190)",
+              background:
+                "linear-gradient(135deg, oklch(0.65 0.15 50) 0%, oklch(0.52 0.14 190) 100%)",
+              color: "oklch(0.99 0.003 75)",
               border: "none",
               transition: "all 0.2s ease",
               minHeight: "40px",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.65 0.20 190)";
+              (e.currentTarget as HTMLButtonElement).style.opacity = "0.85";
               (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                "0 6px 20px oklch(0.72 0.18 190 / 0.3)";
+                "0 6px 20px oklch(0.65 0.15 50 / 0.25)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.72 0.18 190)";
+              (e.currentTarget as HTMLButtonElement).style.opacity = "1";
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
             }}
           >
@@ -380,7 +384,7 @@ export default function HomeScreen({
             style={{
               fontSize: "0.72rem",
               marginTop: "0.35rem",
-              color: "oklch(0.45 0.08 190)",
+              color: "oklch(0.55 0.015 60)",
             }}
           >
             Recommended first step
@@ -401,17 +405,17 @@ export default function HomeScreen({
               label: "Your progress",
               ocid: "home.progress_button",
               onClick: onProgress,
-              color: "oklch(0.68 0.16 220)",
-              bg: "oklch(0.68 0.16 220 / 0.12)",
-              borderColor: "oklch(0.68 0.16 220 / 0.3)",
+              color: "oklch(0.40 0.10 220)",
+              bg: "oklch(0.40 0.10 220 / 0.08)",
+              borderColor: "oklch(0.40 0.10 220 / 0.25)",
             },
             {
               label: "Parent & Teacher View",
               ocid: "home.dashboard_button",
               onClick: onDashboard,
-              color: "oklch(0.68 0.16 175)",
-              bg: "oklch(0.68 0.16 175 / 0.12)",
-              borderColor: "oklch(0.68 0.16 175 / 0.3)",
+              color: "oklch(0.38 0.10 170)",
+              bg: "oklch(0.38 0.10 170 / 0.08)",
+              borderColor: "oklch(0.38 0.10 170 / 0.25)",
             },
           ].map(({ label, ocid, onClick, color, bg, borderColor }) => (
             <button
@@ -431,7 +435,7 @@ export default function HomeScreen({
                 minHeight: "32px",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.opacity = "0.8";
+                (e.currentTarget as HTMLButtonElement).style.opacity = "0.75";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLButtonElement).style.opacity = "1";
@@ -450,11 +454,11 @@ export default function HomeScreen({
               padding: "0.35rem 0.875rem",
               borderRadius: "999px",
               cursor: "pointer",
-              color: muted ? "oklch(0.45 0.01 260)" : "oklch(0.72 0.16 70)",
+              color: muted ? "oklch(0.55 0.015 60)" : "oklch(0.42 0.10 55)",
               backgroundColor: muted
-                ? "oklch(0.22 0.01 260)"
-                : "oklch(0.72 0.16 70 / 0.12)",
-              border: `1px solid ${muted ? "oklch(0.28 0.01 260)" : "oklch(0.72 0.16 70 / 0.3)"}`,
+                ? "oklch(0.92 0.006 75)"
+                : "oklch(0.42 0.10 55 / 0.10)",
+              border: `1px solid ${muted ? "oklch(0.84 0.012 70)" : "oklch(0.42 0.10 55 / 0.28)"}`,
               transition: "all 0.15s ease",
               minHeight: "32px",
             }}
@@ -472,9 +476,9 @@ export default function HomeScreen({
                 padding: "0.35rem 0.875rem",
                 borderRadius: "999px",
                 cursor: "pointer",
-                color: "oklch(0.65 0.16 280)",
-                backgroundColor: "oklch(0.65 0.16 280 / 0.12)",
-                border: "1px solid oklch(0.65 0.16 280 / 0.3)",
+                color: "oklch(0.40 0.10 280)",
+                backgroundColor: "oklch(0.40 0.10 280 / 0.08)",
+                border: "1px solid oklch(0.40 0.10 280 / 0.25)",
                 transition: "all 0.15s ease",
                 minHeight: "32px",
               }}
@@ -492,9 +496,10 @@ export default function HomeScreen({
                 padding: "0.35rem 0.875rem",
                 borderRadius: "999px",
                 cursor: "pointer",
-                color: "oklch(0.93 0.01 260)",
-                backgroundColor: "oklch(0.65 0.16 280 / 0.8)",
-                border: "1px solid oklch(0.65 0.16 280 / 0.5)",
+                color: "oklch(0.99 0.003 75)",
+                background:
+                  "linear-gradient(135deg, oklch(0.65 0.15 50) 0%, oklch(0.52 0.14 190) 100%)",
+                border: "none",
                 transition: "all 0.15s ease",
                 minHeight: "32px",
                 opacity: isLoggingIn || isInitializing ? 0.5 : 1,
@@ -539,8 +544,9 @@ export default function HomeScreen({
             fontWeight: 600,
             letterSpacing: "0.1em",
             textTransform: "uppercase",
-            color: "oklch(0.40 0.01 260)",
+            color: "oklch(0.65 0.012 60)",
             marginBottom: "0.875rem",
+            fontFamily: "Figtree, system-ui, sans-serif",
           }}
         >
           Choose a module
@@ -572,19 +578,20 @@ export default function HomeScreen({
                 minHeight: "100px",
                 position: "relative",
                 overflow: "hidden",
+                boxShadow: "0 1px 3px oklch(0.22 0.02 55 / 0.06)",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLButtonElement;
                 el.style.backgroundColor = mod.bgHover;
-                el.style.borderColor = mod.accent.replace(")", " / 0.5)");
-                el.style.boxShadow = `0 0 0 1px ${mod.accent.replace(")", " / 0.2)")}, 0 4px 16px ${mod.glow}`;
+                el.style.borderColor = mod.accent.replace(")", " / 0.45)");
+                el.style.boxShadow = `0 0 0 1px ${mod.accent.replace(")", " / 0.18)")}, 0 4px 16px ${mod.glow}`;
                 el.style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLButtonElement;
                 el.style.backgroundColor = mod.bg;
                 el.style.borderColor = mod.border;
-                el.style.boxShadow = "none";
+                el.style.boxShadow = "0 1px 3px oklch(0.22 0.02 55 / 0.06)";
                 el.style.transform = "none";
               }}
             >
@@ -595,7 +602,7 @@ export default function HomeScreen({
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: mod.accent,
-                  backgroundColor: mod.accent.replace(")", " / 0.12)"),
+                  backgroundColor: mod.accent.replace(")", " / 0.10)"),
                   padding: "0.15rem 0.55rem",
                   borderRadius: "999px",
                   display: "inline-block",
@@ -606,10 +613,10 @@ export default function HomeScreen({
               </div>
               <h2
                 style={{
-                  fontFamily: "Space Grotesk, system-ui, sans-serif",
+                  fontFamily: "Fraunces, Georgia, serif",
                   fontSize: "1rem",
                   fontWeight: 600,
-                  color: "oklch(0.90 0.01 260)",
+                  color: "oklch(0.22 0.02 55)",
                   marginBottom: "0.375rem",
                   letterSpacing: "-0.01em",
                 }}
@@ -620,7 +627,8 @@ export default function HomeScreen({
                 style={{
                   fontSize: "0.82rem",
                   lineHeight: 1.55,
-                  color: "oklch(0.50 0.01 260)",
+                  color: "oklch(0.55 0.015 60)",
+                  fontFamily: "Figtree, system-ui, sans-serif",
                 }}
               >
                 {mod.description}
@@ -639,8 +647,8 @@ export default function HomeScreen({
             textAlign: "left",
             borderRadius: "0.875rem",
             padding: "1.25rem 1.5rem",
-            border: "1px dashed oklch(0.70 0.15 0 / 0.4)",
-            backgroundColor: "oklch(0.70 0.15 0 / 0.06)",
+            border: "1px dashed oklch(0.45 0.10 60 / 0.35)",
+            backgroundColor: "oklch(0.45 0.10 60 / 0.05)",
             cursor: "pointer",
             transition: "all 0.2s ease",
             display: "flex",
@@ -649,13 +657,13 @@ export default function HomeScreen({
           }}
           onMouseEnter={(e) => {
             const el = e.currentTarget as HTMLButtonElement;
-            el.style.backgroundColor = "oklch(0.70 0.15 0 / 0.12)";
-            el.style.borderColor = "oklch(0.70 0.15 0 / 0.6)";
+            el.style.backgroundColor = "oklch(0.45 0.10 60 / 0.10)";
+            el.style.borderColor = "oklch(0.45 0.10 60 / 0.55)";
           }}
           onMouseLeave={(e) => {
             const el = e.currentTarget as HTMLButtonElement;
-            el.style.backgroundColor = "oklch(0.70 0.15 0 / 0.06)";
-            el.style.borderColor = "oklch(0.70 0.15 0 / 0.4)";
+            el.style.backgroundColor = "oklch(0.45 0.10 60 / 0.05)";
+            el.style.borderColor = "oklch(0.45 0.10 60 / 0.35)";
           }}
         >
           <div
@@ -663,7 +671,7 @@ export default function HomeScreen({
               width: "44px",
               height: "44px",
               borderRadius: "50%",
-              backgroundColor: "oklch(0.70 0.15 0 / 0.15)",
+              backgroundColor: "oklch(0.45 0.10 60 / 0.12)",
               flexShrink: 0,
               display: "flex",
               alignItems: "center",
@@ -680,18 +688,19 @@ export default function HomeScreen({
                 fontWeight: 600,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "oklch(0.70 0.15 0)",
+                color: "oklch(0.45 0.10 60)",
                 marginBottom: "0.25rem",
+                fontFamily: "Figtree, system-ui, sans-serif",
               }}
             >
               Breathing exercise
             </div>
             <h2
               style={{
-                fontFamily: "Space Grotesk, system-ui, sans-serif",
+                fontFamily: "Fraunces, Georgia, serif",
                 fontSize: "1rem",
                 fontWeight: 600,
-                color: "oklch(0.90 0.01 260)",
+                color: "oklch(0.22 0.02 55)",
                 marginBottom: "0.25rem",
                 letterSpacing: "-0.01em",
               }}
@@ -702,7 +711,8 @@ export default function HomeScreen({
               style={{
                 fontSize: "0.82rem",
                 lineHeight: 1.55,
-                color: "oklch(0.50 0.01 260)",
+                color: "oklch(0.55 0.015 60)",
+                fontFamily: "Figtree, system-ui, sans-serif",
               }}
             >
               A gentle box-breathing exercise with affirmations for math

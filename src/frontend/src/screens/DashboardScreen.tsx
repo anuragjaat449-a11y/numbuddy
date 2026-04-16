@@ -9,7 +9,7 @@ interface Props {
   onBack: () => void;
 }
 
-const PIN_KEY = "numbuddy_dashboard_pin";
+const PIN_KEY = "brainwarmup_dashboard_pin";
 
 const QUIZ_MODULES = MODULE_LIST.filter((m) => m.id !== "calm").map((m) => ({
   id: m.id,
@@ -177,8 +177,8 @@ function PinGate({ onUnlock }: { onUnlock: () => void }) {
     }
     // Full reset: remove pin, remove all profiles and their progress
     localStorage.removeItem(PIN_KEY);
-    localStorage.removeItem("numbuddy_profiles");
-    localStorage.removeItem("numbuddy_active_profile");
+    localStorage.removeItem("brainwarmup_profiles");
+    localStorage.removeItem("brainwarmup_active_profile");
     // Reload so state is fresh
     window.location.reload();
   }, [resetConfirm]);
@@ -239,7 +239,7 @@ function PinGate({ onUnlock }: { onUnlock: () => void }) {
         <h1
           className="text-xl font-medium text-center mb-1"
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
+            fontFamily: "Fraunces, Georgia, serif",
             color: "oklch(0.22 0.02 55)",
           }}
         >
@@ -600,7 +600,7 @@ export default function DashboardScreen({ onBack }: Props) {
   } = useLearner();
 
   const [pinState, setPinState] = useState<PinState>(() => {
-    const locked = localStorage.getItem("numbuddy_dashboard_locked");
+    const locked = localStorage.getItem("brainwarmup_dashboard_locked");
     const hasPin = !!localStorage.getItem(PIN_KEY);
     if (!hasPin) return "setting";
     if (locked === "true") return "locked";
@@ -621,12 +621,12 @@ export default function DashboardScreen({ onBack }: Props) {
 
   const handleUnlock = useCallback(() => {
     setPinState("unlocked");
-    localStorage.removeItem("numbuddy_dashboard_locked");
+    localStorage.removeItem("brainwarmup_dashboard_locked");
   }, []);
 
   const handleLock = useCallback(() => {
     setPinState("locked");
-    localStorage.setItem("numbuddy_dashboard_locked", "true");
+    localStorage.setItem("brainwarmup_dashboard_locked", "true");
   }, []);
 
   const handleAddProfile = useCallback(() => {
@@ -745,14 +745,13 @@ export default function DashboardScreen({ onBack }: Props) {
       >
         <div
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
-            fontSize: "22pt",
+            fontFamily: "Fraunces, Georgia, serif",
             fontWeight: 600,
             color: "#1a1a1a",
             marginBottom: "4px",
           }}
         >
-          Studymore Progress Report — {activeProfile.name}
+          Brain Warmup Progress Report — {activeProfile.name}
         </div>
         <div style={{ fontSize: "11pt", color: "#555", marginBottom: "2px" }}>
           {formatPrintDate()}
@@ -782,7 +781,7 @@ export default function DashboardScreen({ onBack }: Props) {
             <h1
               className="text-2xl md:text-3xl font-medium tracking-tight"
               style={{
-                fontFamily: "Space Grotesk, system-ui, sans-serif",
+                fontFamily: "Fraunces, Georgia, serif",
                 color: "oklch(0.22 0.02 55)",
               }}
             >
@@ -979,7 +978,7 @@ export default function DashboardScreen({ onBack }: Props) {
             <h2
               className="text-lg font-medium mb-2"
               style={{
-                fontFamily: "Space Grotesk, system-ui, sans-serif",
+                fontFamily: "Fraunces, Georgia, serif",
                 color: "oklch(0.22 0.02 55)",
               }}
             >
@@ -1116,7 +1115,7 @@ export default function DashboardScreen({ onBack }: Props) {
                     <div
                       className="text-3xl md:text-4xl font-medium tabular-nums mb-1"
                       style={{
-                        fontFamily: "Space Grotesk, system-ui, sans-serif",
+                        fontFamily: "Fraunces, Georgia, serif",
                         color: "oklch(0.35 0.08 55)",
                       }}
                     >

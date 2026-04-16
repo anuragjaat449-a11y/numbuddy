@@ -181,7 +181,7 @@ export default function DifficultyScreen({
           <h1
             className="text-2xl md:text-3xl font-medium mb-2 text-center"
             style={{
-              fontFamily: "Space Grotesk, system-ui, sans-serif",
+              fontFamily: "Fraunces, Georgia, serif",
               color: "oklch(0.22 0.02 55)",
             }}
           >
@@ -246,7 +246,7 @@ export default function DifficultyScreen({
                   <div
                     className="font-semibold text-base md:text-lg"
                     style={{
-                      fontFamily: "Space Grotesk, system-ui, sans-serif",
+                      fontFamily: "Fraunces, Georgia, serif",
                       color: "oklch(0.22 0.02 55)",
                     }}
                   >

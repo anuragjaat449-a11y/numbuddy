@@ -174,7 +174,7 @@ export default function ResultScreen({ state, onTryAgain, onHome }: Props) {
         <h2
           className="text-2xl font-medium mb-2"
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
+            fontFamily: "Fraunces, Georgia, serif",
             color: "oklch(0.22 0.02 55)",
           }}
         >

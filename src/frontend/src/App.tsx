@@ -73,28 +73,28 @@ function MigrationModal({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
-      style={{ backgroundColor: "oklch(0 0 0 / 0.65)" }}
+      style={{ backgroundColor: "oklch(0 0 0 / 0.45)" }}
       data-ocid="migration.modal"
     >
       <div
         className="w-full max-w-sm rounded-2xl p-7 shadow-lg"
         style={{
-          backgroundColor: "oklch(0.18 0.015 260)",
-          border: "1px solid oklch(0.30 0.015 260)",
+          backgroundColor: "oklch(1 0 0)",
+          border: "1px solid oklch(0.88 0.012 70)",
         }}
       >
         <h2
           className="text-xl font-medium mb-3"
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
-            color: "oklch(0.93 0.01 260)",
+            fontFamily: "Fraunces, Georgia, serif",
+            color: "oklch(0.22 0.02 55)",
           }}
         >
           Save your progress?
         </h2>
         <p
           className="text-sm leading-relaxed mb-6"
-          style={{ color: "oklch(0.58 0.01 260)" }}
+          style={{ color: "oklch(0.55 0.015 60)" }}
         >
           You have practice sessions saved on this device. Would you like to
           save them to your account so they&apos;re available on all your
@@ -107,16 +107,16 @@ function MigrationModal({
             onClick={onYes}
             className="w-full py-3 rounded-xl text-sm font-medium transition-colors min-h-[48px]"
             style={{
-              backgroundColor: "oklch(0.72 0.18 190)",
-              color: "oklch(0.12 0.01 190)",
+              backgroundColor: "oklch(0.28 0.025 55)",
+              color: "oklch(0.98 0.006 75)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.65 0.20 190)";
+                "oklch(0.22 0.02 55)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.72 0.18 190)";
+                "oklch(0.28 0.025 55)";
             }}
           >
             Yes, save it to my account
@@ -127,16 +127,16 @@ function MigrationModal({
             onClick={onNo}
             className="w-full py-3 rounded-xl text-sm transition-colors min-h-[48px]"
             style={{
-              backgroundColor: "oklch(0.22 0.015 260)",
-              color: "oklch(0.55 0.01 260)",
+              backgroundColor: "oklch(0.94 0.008 75)",
+              color: "oklch(0.55 0.015 60)",
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.26 0.015 260)";
+                "oklch(0.90 0.010 72)";
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                "oklch(0.22 0.015 260)";
+                "oklch(0.94 0.008 75)";
             }}
           >
             Keep it on this device
@@ -152,9 +152,9 @@ function SyncingBanner() {
     <output
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full shadow-md text-sm"
       style={{
-        backgroundColor: "oklch(0.18 0.015 260)",
-        border: "1px solid oklch(0.30 0.015 260)",
-        color: "oklch(0.65 0.01 260)",
+        backgroundColor: "oklch(1 0 0)",
+        border: "1px solid oklch(0.88 0.012 70)",
+        color: "oklch(0.55 0.015 60)",
       }}
       aria-live="polite"
       data-ocid="sync.loading_state"
@@ -172,7 +172,7 @@ function SyncingBanner() {
           cx="8"
           cy="8"
           r="6"
-          stroke="oklch(0.72 0.18 190)"
+          stroke="oklch(0.28 0.025 55)"
           strokeWidth="2"
           strokeDasharray="28"
           strokeDashoffset="10"
@@ -189,9 +189,9 @@ function SaveFailedToast() {
     <output
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-2.5 rounded-full shadow-md text-sm"
       style={{
-        backgroundColor: "oklch(0.22 0.05 30)",
-        border: "1px solid oklch(0.40 0.12 30)",
-        color: "oklch(0.80 0.06 30)",
+        backgroundColor: "oklch(0.97 0.02 30)",
+        border: "1px solid oklch(0.88 0.06 30)",
+        color: "oklch(0.45 0.12 30)",
       }}
       aria-live="assertive"
       data-ocid="save_failed.toast"
@@ -203,7 +203,7 @@ function SaveFailedToast() {
         fill="none"
         aria-hidden="true"
       >
-        <circle cx="8" cy="8" r="6" fill="oklch(0.55 0.18 25)" />
+        <circle cx="8" cy="8" r="6" fill="oklch(0.65 0.18 25)" />
         <path
           d="M8 5v3.5"
           stroke="white"
@@ -212,7 +212,7 @@ function SaveFailedToast() {
         />
         <circle cx="8" cy="10.5" r="0.75" fill="white" />
       </svg>
-      Session saved locally. Your account couldn’t be reached.
+      Session saved locally. Your account couldn't be reached.
     </output>
   );
 }
@@ -260,7 +260,7 @@ function AppContent() {
     if (!pendingMigrationCheck || !actor) return;
     setPendingMigrationCheck(false);
 
-    const migrated = localStorage.getItem("numbuddy_migrated");
+    const migrated = localStorage.getItem("brainwarmup_migrated");
     const data = getAllProgressData();
     const hasData = Object.values(data).some((arr) => arr.length > 0);
 
@@ -279,7 +279,7 @@ function AppContent() {
 
   const handleMigrationYes = useCallback(async () => {
     setShowMigrationModal(false);
-    localStorage.setItem("numbuddy_migrated", "true");
+    localStorage.setItem("brainwarmup_migrated", "true");
     if (actor) {
       setIsSyncing(true);
       try {
@@ -298,7 +298,7 @@ function AppContent() {
 
   const handleMigrationNo = useCallback(() => {
     setShowMigrationModal(false);
-    localStorage.setItem("numbuddy_migrated", "true");
+    localStorage.setItem("brainwarmup_migrated", "true");
     if (actor) {
       setIsSyncing(true);
       Promise.all([
@@ -311,7 +311,7 @@ function AppContent() {
   }, [actor, syncProfilesFromBackend]);
 
   const handleEnterFromLanding = useCallback(() => {
-    const onboarded = localStorage.getItem("numbuddy_onboarded");
+    const onboarded = localStorage.getItem("brainwarmup_onboarded");
     if (!onboarded) {
       setScreen("onboarding");
     } else {
@@ -320,7 +320,7 @@ function AppContent() {
   }, []);
 
   const handleOnboardingDone = useCallback(() => {
-    localStorage.setItem("numbuddy_onboarded", "true");
+    localStorage.setItem("brainwarmup_onboarded", "true");
     setScreen("home");
   }, []);
 
@@ -430,7 +430,7 @@ function AppContent() {
 
   const getAssessmentSuggestion = (catId: Exclude<CatId, "calm">) => {
     try {
-      const raw = localStorage.getItem("numbuddy_assessment");
+      const raw = localStorage.getItem("brainwarmup_assessment");
       if (!raw) return null;
       const data = JSON.parse(raw) as { responses: boolean[] };
       const responses = data.responses;
@@ -489,7 +489,7 @@ function AppContent() {
   return (
     <div
       className="min-h-screen flex flex-col"
-      style={{ backgroundColor: "oklch(0.11 0.01 260)" }}
+      style={{ backgroundColor: "oklch(0.98 0.006 75)" }}
     >
       <a href="#main-content" className="skip-to-content">
         Skip to main content
@@ -570,9 +570,9 @@ function AppContent() {
             padding: "0.875rem 1rem",
             textAlign: "center",
             fontSize: "0.75rem",
-            color: "oklch(0.38 0.01 260)",
-            borderTop: "1px solid oklch(0.20 0.015 260)",
-            backgroundColor: "oklch(0.14 0.015 260)",
+            color: "oklch(0.55 0.015 60)",
+            borderTop: "1px solid oklch(0.88 0.012 70)",
+            backgroundColor: "oklch(0.96 0.008 75)",
           }}
         >
           Made with ❤️ by{" "}
@@ -581,7 +581,7 @@ function AppContent() {
             target="_blank"
             rel="noreferrer"
             style={{
-              color: "oklch(0.72 0.18 190)",
+              color: "oklch(0.38 0.06 50)",
               textDecoration: "none",
               fontWeight: 600,
             }}

@@ -99,7 +99,7 @@ export default function CalmScreen({ onBack }: Props) {
               className="text-5xl mb-4"
               style={{
                 color: roseAccent,
-                fontFamily: "Space Grotesk, system-ui, sans-serif",
+                fontFamily: "Fraunces, Georgia, serif",
               }}
             >
               Done!
@@ -149,7 +149,7 @@ export default function CalmScreen({ onBack }: Props) {
                 aria-live="polite"
                 aria-atomic="true"
                 style={{
-                  fontFamily: "Space Grotesk, system-ui, sans-serif",
+                  fontFamily: "Fraunces, Georgia, serif",
                   color: roseAccent,
                 }}
               >

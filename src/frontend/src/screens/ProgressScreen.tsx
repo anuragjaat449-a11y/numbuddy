@@ -245,7 +245,7 @@ export default function ProgressScreen({ onBack, actor }: Props) {
         <h1
           className="text-2xl md:text-3xl font-medium tracking-tight"
           style={{
-            fontFamily: "Space Grotesk, system-ui, sans-serif",
+            fontFamily: "Fraunces, Georgia, serif",
             color: "oklch(0.22 0.02 55)",
           }}
         >

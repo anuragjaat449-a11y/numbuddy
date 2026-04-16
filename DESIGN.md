@@ -2,68 +2,68 @@
 
 ## Direction
 
-**Studymore** — A modern dark educational math platform making accessible learning engaging and rewarding through vibrant accents and playful geometry.
+**Brain Warmup** — Premium educational math platform with warm light aesthetic, professional typography, and refined modern UI for confident learning.
 
 ## Tone
 
-Bold, energetic, contemporary. Dark theme with vivid teal and warm amber accents creates confidence and joy in learning contexts.
+Warm, educational, professional. Cream background with dark brown typography and amber/teal interactive accents create calm learning without sterility.
 
 ## Differentiation
 
-Module-based color coding (Number Sense purple, Arithmetic teal, Money gold, Time blue) provides instant visual recognition while maintaining a cohesive modern dark aesthetic.
+Gradient button accents (amber-to-teal) and refined card elevation deliver modern polish while maintaining approachable warmth for all learner types.
 
 ## Color Palette
 
 | Token      | OKLCH          | Role                             |
 | ---------- | -------------- | -------------------------------- |
-| background | 0.12 0.01 260  | Almost-black base, dark theme    |
-| foreground | 0.93 0.01 260  | Off-white text, high contrast    |
-| card       | 0.16 0.015 260 | Elevated surfaces, subtle depth  |
-| primary    | 0.72 0.18 190  | Vibrant teal, actions & accents  |
-| accent     | 0.72 0.16 70   | Warm amber, success & rewards    |
-| muted      | 0.22 0.02 260  | Secondary, interactive states    |
+| background | 0.98 0.006 75  | Cream base, light theme          |
+| foreground | 0.22 0.02 55   | Dark brown text, high contrast   |
+| card       | 1 0 0          | White cards, elevated surfaces   |
+| primary    | 0.28 0.025 55  | Dark brown action accent         |
+| accent     | 0.72 0.15 50   | Warm amber, interactive states   |
+| muted      | 0.94 0.008 75  | Light neutral, secondary text    |
 
 ## Typography
 
-- **Display**: Space Grotesk — strong, geometric headings and hero text
-- **Body**: DM Sans — clean, legible paragraphs and UI labels
-- **Scale**: hero `text-5xl md:text-7xl font-bold tracking-tight` | h2 `text-3xl md:text-5xl font-bold tracking-tight` | label `text-sm font-semibold tracking-widest uppercase` | body `text-base md:text-lg`
+- **Display**: Fraunces — warm serif, confident headings and branding
+- **Body**: Figtree — accessible sans, paragraphs and UI labels
+- **Scale**: hero `text-5xl md:text-7xl font-bold tracking-tight` | h2 `text-3xl md:text-5xl font-bold tracking-tight` | label `text-sm font-semibold` | body `text-base md:text-lg`
 
 ## Elevation & Depth
 
-Card surfaces sit above background via subtle OKLCH lightness shift (0.04–0.06 L difference) with minimal shadow — no glows, no blur orbs. Buttons and interactive elements pulse slightly on hover without layer jumping.
+Cards elevated via white background and refined shadow. Subtle border on darker surfaces. Button hover: color shift + shadow increase (150ms ease). No glows or artificial bloom.
 
 ## Structural Zones
 
-| Zone    | Background              | Border                 | Notes                                |
-| ------- | ----------------------- | ---------------------- | ------------------------------------ |
-| Header  | `card` (0.16 L)         | `border` bottom, teal  | Logo + nav, top visual anchor        |
-| Content | `background` (0.12 L)   | —                      | Alt sections bg-muted/20 every 2-3  |
-| Footer  | `muted` (0.22 L)        | `border` top, teal     | Made with ❤️ by anurag_singh.indoliya + Instagram |
+| Zone    | Background          | Border                     | Notes                                    |
+| ------- | ------------------- | -------------------------- | ---------------------------------------- |
+| Header  | `card` (white)      | `border` bottom            | Logo + nav, visual anchor, no shadow     |
+| Content | `background` (cream)| —                          | Card sections with 24px spacing          |
+| Footer  | `muted` (0.94 L)    | `border` top               | Made with ❤️ by anurag_singh.indoliya    |
 
 ## Spacing & Rhythm
 
-Spacious density (1.5x default gaps) with consistent 12px–16px–24px micro-intervals. Module cards stack 2-column on tablet, 1 on mobile. Section dividers use 2rem vertical margin.
+Consistent 12px–16px–24px micro-intervals. Content cards centered with max-width lg (32rem). Section dividers use 2rem vertical margin. Mobile-first responsive at sm/md/lg.
 
 ## Component Patterns
 
-- **Buttons**: Teal primary (`bg-primary text-primary-foreground`), amber accent (`bg-accent text-accent-foreground`), rounded `lg` (12px)
-- **Cards**: `rounded-lg`, `bg-card`, `border border-border`, light hover lift via transform
-- **Badges**: Inline module colors (purple #8855FF, teal #00D4AA, gold #FFB800, blue #0099FF) on dark background
+- **Buttons**: Primary dark brown, accent amber-to-teal gradient, rounded `md` (8px), text center, 16px padding
+- **Cards**: White background, `rounded-md`, subtle shadow, `border border-border`, internal padding 16–24px
+- **Input**: Light border, no shadow, focus ring via `primary` color outline
 
 ## Motion
 
-- **Entrance**: Fade + slide-up (300ms ease-out) on page load, staggered per card
-- **Hover**: Button color shift + shadow lift (150ms cubic-bezier)
-- **Decorative**: None — focus on clarity and learner engagement over animation spectacle
+- **Entrance**: Fade + slide-up (300ms ease-out) on load, staggered cards
+- **Hover**: Button color shift, shadow scale, 150ms transition
+- **Interactive**: No decorative animations; focus on clarity and learner engagement
 
 ## Constraints
 
-- No gradients for backgrounds — OKLCH layering only
-- Module colors must remain fixed across all screens for learner recognition
-- Dark theme is the default; light mode not implemented
-- All credits to anurag_singh.indoliya only; no EdUnite or Caffeine.ai branding
+- Warm light theme only — no dark mode toggle
+- Fraunces + Figtree fonts exclusively; no system fallbacks
+- All credits to anurag_singh.indoliya; no EdUnite/Caffeine.ai references
+- App name: Brain Warmup across all metadata and UI text
 
 ## Signature Detail
 
-Teal accent bar beneath header reinforces module color coding and creates visual momentum into content sections.
+Gradient button accents and refined card spacing deliver modern professionalism while maintaining warm, approachable educational atmosphere.
