@@ -111,7 +111,8 @@ const CORRECT_MESSAGES = [
 const DOT_POSITIONS = [1, 2, 3, 4, 5];
 
 const DIFFICULTY_LABELS: Record<string, string> = {
-  easy: "Easy",
+  beginner: "Beginner",
+  intermediate: "Intermediate",
   medium: "Medium",
   hard: "Hard",
 };

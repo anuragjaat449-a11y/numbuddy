@@ -372,7 +372,14 @@ function makeNumberSenseTextQuestion(
           ? "less_than"
           : "closest_to";
   if (type === "between") {
-    const max = difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 50;
+    const max =
+      difficulty === "beginner"
+        ? 10
+        : difficulty === "medium"
+          ? 20
+          : difficulty === "intermediate"
+            ? 100
+            : 50;
     const lo = randInt(1, max - 2);
     const hi = lo + randInt(2, 5);
     const answer = randInt(lo + 1, hi - 1);
@@ -397,12 +404,19 @@ function makeNumberSenseTextQuestion(
   }
   if (type === "less_than") {
     const base =
-      difficulty === "easy"
+      difficulty === "beginner"
         ? randInt(3, 8)
         : difficulty === "medium"
           ? randInt(4, 15)
-          : randInt(8, 30);
-    const less = difficulty === "easy" ? randInt(1, 2) : randInt(1, 4);
+          : difficulty === "intermediate"
+            ? randInt(20, 100)
+            : randInt(8, 30);
+    const less =
+      difficulty === "beginner"
+        ? randInt(1, 2)
+        : difficulty === "intermediate"
+          ? randInt(5, 20)
+          : randInt(1, 4);
     const answerLess = base - less;
     const distractorsLess = makeDistractors(
       answerLess,
@@ -418,7 +432,14 @@ function makeNumberSenseTextQuestion(
     };
   }
   if (type === "closest_to") {
-    const max = difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 50;
+    const max =
+      difficulty === "beginner"
+        ? 10
+        : difficulty === "medium"
+          ? 20
+          : difficulty === "intermediate"
+            ? 200
+            : 50;
     const target = randInt(3, max - 3);
     const answerClose = target + (Math.random() < 0.5 ? 1 : -1);
     const d2 = target + (answerClose > target ? -3 : 3);
@@ -434,12 +455,19 @@ function makeNumberSenseTextQuestion(
     };
   }
   const base =
-    difficulty === "easy"
+    difficulty === "beginner"
       ? randInt(1, 5)
       : difficulty === "medium"
         ? randInt(2, 10)
-        : randInt(5, 20);
-  const more = difficulty === "easy" ? randInt(1, 3) : randInt(1, 5);
+        : difficulty === "intermediate"
+          ? randInt(10, 50)
+          : randInt(5, 20);
+  const more =
+    difficulty === "beginner"
+      ? randInt(1, 3)
+      : difficulty === "intermediate"
+        ? randInt(5, 25)
+        : randInt(1, 5);
   const answerMore = base + more;
   const distractorsMore = makeDistractors(answerMore, 3, 1, answerMore + 10);
   return {
@@ -539,11 +567,24 @@ function makeTimeScheduleQuestion(): TimeScheduleQuestion {
 }
 
 function makeNumberQuestion(difficulty: Difficulty): NumberQuestion {
-  const maxVal = difficulty === "easy" ? 5 : difficulty === "medium" ? 7 : 9;
+  const maxVal =
+    difficulty === "beginner"
+      ? 5
+      : difficulty === "medium"
+        ? 7
+        : difficulty === "intermediate"
+          ? 11
+          : 9;
   const flashDuration =
-    difficulty === "easy" ? 2000 : difficulty === "medium" ? 1500 : 1000;
+    difficulty === "beginner"
+      ? 2000
+      : difficulty === "medium"
+        ? 1500
+        : difficulty === "intermediate"
+          ? 800
+          : 1000;
   const value = randInt(1, maxVal);
-  const dots = jitter(DOT_PATTERNS[value]);
+  const dots = jitter(DOT_PATTERNS[value] ?? DOT_PATTERNS[9]);
   const pool = Array.from({ length: maxVal }, (_, i) => i + 1).filter(
     (n) => n !== value,
   );
@@ -559,8 +600,19 @@ function makeNumberQuestion(difficulty: Difficulty): NumberQuestion {
 
 function makeMagnitudeQuestion(difficulty: Difficulty): MagnitudeQuestion {
   const maxVal =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 50 : 200;
-  const minGap = difficulty === "hard" ? 1 : difficulty === "medium" ? 3 : 2;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 50
+        : difficulty === "intermediate"
+          ? 500
+          : 200;
+  const minGap =
+    difficulty === "hard" || difficulty === "intermediate"
+      ? 1
+      : difficulty === "medium"
+        ? 3
+        : 2;
   let a: number;
   let b: number;
   do {
@@ -572,9 +624,16 @@ function makeMagnitudeQuestion(difficulty: Difficulty): MagnitudeQuestion {
 }
 
 function makeGroupingQuestion(difficulty: Difficulty): GroupingQuestion {
-  const minTotal = difficulty === "easy" ? 2 : difficulty === "medium" ? 4 : 8;
+  const minTotal =
+    difficulty === "beginner" ? 2 : difficulty === "medium" ? 4 : 8;
   const maxTotal =
-    difficulty === "easy" ? 8 : difficulty === "medium" ? 15 : 25;
+    difficulty === "beginner"
+      ? 8
+      : difficulty === "medium"
+        ? 15
+        : difficulty === "intermediate"
+          ? 40
+          : 25;
   const total = randInt(minTotal, maxTotal);
   const groupA = randInt(1, total - 1);
   const groupB = total - groupA;
@@ -590,7 +649,13 @@ function makeGroupingQuestion(difficulty: Difficulty): GroupingQuestion {
 
 function makeOddEvenQuestion(difficulty: Difficulty): OddEvenQuestion {
   const maxVal =
-    difficulty === "easy" ? 20 : difficulty === "medium" ? 50 : 100;
+    difficulty === "beginner"
+      ? 20
+      : difficulty === "medium"
+        ? 50
+        : difficulty === "intermediate"
+          ? 999
+          : 100;
   const value = randInt(1, maxVal);
   const answer: "odd" | "even" = value % 2 === 0 ? "even" : "odd";
   return {
@@ -606,13 +671,24 @@ function makeArithQuestion(difficulty: Difficulty): ArithQuestion {
   let a: number;
   let b: number;
   let answer: number;
-  if (difficulty === "easy") {
+  if (difficulty === "beginner") {
     if (op === "+") {
       a = randInt(1, 5);
       b = randInt(1, 10 - a);
       answer = a + b;
     } else {
       a = randInt(2, 10);
+      b = randInt(1, a - 1);
+      answer = a - b;
+    }
+  } else if (difficulty === "intermediate") {
+    // 3-digit + 3-digit or 2-digit × 2-digit style problems
+    if (op === "+") {
+      a = randInt(10, 99);
+      b = randInt(10, 99);
+      answer = a + b;
+    } else {
+      a = randInt(20, 150);
       b = randInt(1, a - 1);
       answer = a - b;
     }
@@ -637,7 +713,7 @@ function makeArithQuestion(difficulty: Difficulty): ArithQuestion {
       answer = a - b;
     }
   }
-  const distractors = makeDistractors(answer, 3, 0, 25);
+  const distractors = makeDistractors(answer, 3, 0, answer + 30);
   return {
     type: "arith",
     op,
@@ -709,11 +785,16 @@ function makeArithMultiplyQuestion(
   difficulty: Difficulty,
 ): ArithMultiplyQuestion {
   const tables =
-    difficulty === "hard" ? [2, 3, 4, 5, 6, 7, 8, 9] : [2, 3, 4, 5];
+    difficulty === "hard"
+      ? [2, 3, 4, 5, 6, 7, 8, 9]
+      : difficulty === "intermediate"
+        ? [6, 7, 8, 9, 11, 12]
+        : [2, 3, 4, 5];
   const table = tables[randInt(0, tables.length - 1)];
-  const factor = randInt(1, 10);
+  const factor =
+    difficulty === "intermediate" ? randInt(6, 15) : randInt(1, 10);
   const answer = table * factor;
-  const distractors = makeDistractors(answer, 3, 0, 90);
+  const distractors = makeDistractors(answer, 3, 0, answer + 50);
   return {
     type: "arith_multiply",
     a: table,
@@ -731,12 +812,13 @@ const COIN_DEFS = [
 ];
 
 function makeMoneyQuestion(difficulty: Difficulty): MoneyQuestion {
-  const maxTotal = difficulty === "easy" ? 50 : 100;
+  const maxTotal =
+    difficulty === "beginner" ? 50 : difficulty === "intermediate" ? 200 : 100;
   let coins: typeof COIN_DEFS = [];
   let total = 0;
   do {
     const count = randInt(2, 5);
-    const pool = difficulty === "easy" ? COIN_DEFS.slice(0, 3) : COIN_DEFS;
+    const pool = difficulty === "beginner" ? COIN_DEFS.slice(0, 3) : COIN_DEFS;
     coins = Array.from(
       { length: count },
       () => pool[randInt(0, pool.length - 1)],
@@ -791,15 +873,17 @@ function makeMoneyBillsQuestion(): MoneyBillsQuestion {
 function makeMoneyChangeQuestion(difficulty: Difficulty): MoneyChangeQuestion {
   // Pick a realistic bill denomination based on difficulty
   const billOptions =
-    difficulty === "easy"
+    difficulty === "beginner"
       ? [100] // cents: $1 only
       : difficulty === "medium"
         ? [100, 500] // $1 or $5
-        : [100, 500, 1000, 2000]; // $1, $5, $10, or $20
+        : difficulty === "intermediate"
+          ? [500, 1000, 2000, 5000] // $5, $10, $20, $50
+          : [100, 500, 1000, 2000]; // $1, $5, $10, or $20
   const paidCents = billOptions[randInt(0, billOptions.length - 1)];
   // Cost must leave positive change and stay below paid amount
   const maxCost = paidCents - 5;
-  const minCost = difficulty === "easy" ? 10 : 25;
+  const minCost = difficulty === "beginner" ? 10 : 25;
   const cost = randInt(Math.min(minCost, maxCost - 5), maxCost);
   const change = paidCents - cost;
   const distractors = makeDistractors(change, 3, 1, paidCents - 1);
@@ -855,17 +939,18 @@ function pad(n: number): string {
 
 function makeTimeQuestion(difficulty: Difficulty): TimeQuestion {
   let minute: number;
-  if (difficulty === "easy") {
+  if (difficulty === "beginner") {
     minute = [0, 30][randInt(0, 1)];
   } else if (difficulty === "medium") {
     minute = [0, 15, 30, 45][randInt(0, 3)];
   } else {
+    // hard and intermediate both use any 5-minute interval
     minute = randInt(0, 11) * 5;
   }
   const hour = randInt(1, 12);
   const answer = `${hour}:${pad(minute)}`;
   const allTimes: string[] = [];
-  if (difficulty === "hard") {
+  if (difficulty === "hard" || difficulty === "intermediate") {
     for (let h = 1; h <= 12; h++) {
       for (let m = 0; m < 60; m += 5) {
         const t = `${h}:${pad(m)}`;
@@ -921,8 +1006,13 @@ function makeTimeCalendarQuestion(): TimeCalendarQuestion {
   };
 }
 
-export function makeTimeElapsedQuestion(): TimeElapsedQuestion {
-  const elapsedOptions = [10, 15, 20, 30, 45, 60];
+export function makeTimeElapsedQuestion(
+  difficulty?: Difficulty,
+): TimeElapsedQuestion {
+  const isIntermediate = difficulty === "intermediate";
+  const elapsedOptions = isIntermediate
+    ? [75, 90, 105, 120, 150, 180] // multi-hour spans
+    : [10, 15, 20, 30, 45, 60];
   const elapsedMinutes = elapsedOptions[randInt(0, elapsedOptions.length - 1)];
   const startHour = randInt(1, 11);
   const startMinute = [0, 15, 30][randInt(0, 2)];
@@ -949,6 +1039,91 @@ export function makeTimeElapsedQuestion(): TimeElapsedQuestion {
 }
 
 function makeSequenceQuestion(difficulty: Difficulty): SequenceQuestion {
+  // Intermediate: Fibonacci-like or geometric progressions
+  if (difficulty === "intermediate") {
+    const seqType = Math.random();
+    if (seqType < 0.4) {
+      // Fibonacci-like: each term = sum of previous two
+      const a = randInt(1, 5);
+      const b = randInt(1, 5);
+      const nums = [a, b, a + b, a + 2 * b, 2 * a + 3 * b];
+      const blankIndex = randInt(2, 4);
+      const answer = nums[blankIndex];
+      const seq: (number | null)[] = nums.map((n, i) =>
+        i === blankIndex ? null : n,
+      );
+      const distractors = makeDistractors(
+        answer,
+        3,
+        Math.max(1, answer - 10),
+        answer + 15,
+      );
+      return {
+        type: "sequence",
+        sequence: seq,
+        answer,
+        blankIndex,
+        choices: shuffle([answer, ...distractors]),
+        step: 0,
+        sequenceType: "double",
+        questionLabel:
+          "Each number is the sum of the two before it. What goes in the blank?",
+      };
+    }
+    if (seqType < 0.7) {
+      // Geometric: multiply by 3
+      const base = randInt(1, 3);
+      const nums = [base, base * 3, base * 9, base * 27, base * 81];
+      const blankIndex = randInt(1, 3);
+      const answer = nums[blankIndex];
+      const seq: (number | null)[] = nums.map((n, i) =>
+        i === blankIndex ? null : n,
+      );
+      const distractors = makeDistractors(answer, 3, 1, answer * 2);
+      return {
+        type: "sequence",
+        sequence: seq,
+        answer,
+        blankIndex,
+        choices: shuffle([answer, ...distractors]),
+        step: 0,
+        sequenceType: "double",
+        questionLabel:
+          "Each number is multiplied by 3. What goes in the blank?",
+      };
+    }
+    // Alternating with larger gaps
+    const stepA = randInt(3, 8);
+    let stepB = randInt(3, 8);
+    while (stepB === stepA) stepB = randInt(3, 8);
+    const startVal = randInt(10, 50);
+    const nums: number[] = [startVal];
+    for (let i = 0; i < 4; i++) {
+      nums.push(nums[nums.length - 1] + (i % 2 === 0 ? stepA : stepB));
+    }
+    const blankIndex = randInt(2, 4);
+    const answer = nums[blankIndex];
+    const seq: (number | null)[] = nums.map((n, i) =>
+      i === blankIndex ? null : n,
+    );
+    const distractors = makeDistractors(
+      answer,
+      3,
+      Math.max(0, answer - 15),
+      answer + 15,
+    );
+    return {
+      type: "sequence",
+      sequence: seq,
+      answer,
+      blankIndex,
+      choices: shuffle([answer, ...distractors]),
+      step: stepA,
+      sequenceType: "alternating",
+      questionLabel: `The pattern alternates +${stepA} and +${stepB}. What number goes in the blank?`,
+    };
+  }
+
   // Hard: alternating step sequences (e.g. +1,+3,+1,+3)
   if (difficulty === "hard" && Math.random() < 0.25) {
     const stepA = randInt(1, 3);
@@ -983,7 +1158,7 @@ function makeSequenceQuestion(difficulty: Difficulty): SequenceQuestion {
   }
 
   // Medium/Hard: doubling sequences (2,4,8,16...)
-  if (difficulty !== "easy" && Math.random() < 0.2) {
+  if (difficulty !== "beginner" && Math.random() < 0.2) {
     const base = randInt(1, 4);
     const nums = [base, base * 2, base * 4, base * 8, base * 16];
     const blankIndex = randInt(1, 3);
@@ -1045,7 +1220,8 @@ function makeSequenceQuestion(difficulty: Difficulty): SequenceQuestion {
   const descending =
     (difficulty === "medium" || difficulty === "hard") && Math.random() < 0.5;
 
-  const maxStep = difficulty === "easy" ? 2 : difficulty === "medium" ? 4 : 6;
+  const maxStep =
+    difficulty === "beginner" ? 2 : difficulty === "medium" ? 4 : 6;
   const step = randInt(1, maxStep);
 
   let nums: number[];
@@ -1073,7 +1249,7 @@ function makeSequenceQuestion(difficulty: Difficulty): SequenceQuestion {
 
   // Allow blankIndex 0 sometimes on medium/hard for "what comes before?"
   const allowBefore =
-    difficulty !== "easy" && !descending && Math.random() < 0.2;
+    difficulty !== "beginner" && !descending && Math.random() < 0.2;
   const blankIndex = allowBefore ? 0 : randInt(1, 3);
   const answer = nums[blankIndex];
   const seq: (number | null)[] = nums.map((n, i) =>
@@ -1098,15 +1274,17 @@ function makeSequenceQuestion(difficulty: Difficulty): SequenceQuestion {
 
 function makePlaceValueQuestion(difficulty: Difficulty): PlaceValueQuestion {
   let num: number;
-  if (difficulty === "easy") {
+  if (difficulty === "beginner") {
     num = randInt(11, 49);
   } else if (difficulty === "medium") {
     num = randInt(50, 99);
+  } else if (difficulty === "intermediate") {
+    num = randInt(100, 999);
   } else {
     num = randInt(100, 199);
   }
   const ask: "tens" | "ones" = Math.random() < 0.5 ? "tens" : "ones";
-  const tens = Math.floor(num / 10);
+  const tens = Math.floor(num / 10) % 10;
   const ones = num % 10;
   const answer = ask === "tens" ? tens : ones;
   const distractors = makeDistractors(answer, 3, 0, 19);
@@ -1120,9 +1298,12 @@ function makePlaceValueQuestion(difficulty: Difficulty): PlaceValueQuestion {
 }
 
 function makeNumberLineQuestion(difficulty: Difficulty): NumberLineQuestion {
-  if (difficulty === "hard" && Math.random() < 0.4) {
-    const rangeMin = -10;
-    const rangeMax = 10;
+  if (
+    (difficulty === "hard" || difficulty === "intermediate") &&
+    Math.random() < 0.4
+  ) {
+    const rangeMin = difficulty === "intermediate" ? -20 : -10;
+    const rangeMax = difficulty === "intermediate" ? 20 : 10;
     const markerValue = randInt(rangeMin + 1, rangeMax - 1);
     const allChoices = Array.from(
       { length: rangeMax - rangeMin + 1 },
@@ -1140,7 +1321,13 @@ function makeNumberLineQuestion(difficulty: Difficulty): NumberLineQuestion {
   }
 
   const rangeMax =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 50;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 20
+        : difficulty === "intermediate"
+          ? 100
+          : 50;
   const markerValue = randInt(1, rangeMax - 1);
   const distractors = makeDistractors(markerValue, 3, 0, rangeMax);
   return {
@@ -1156,13 +1343,19 @@ function makeNumberLineHalfwayQuestion(
   difficulty: Difficulty,
 ): NumberLineHalfwayQuestion {
   const rangeMax =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 20
+        : difficulty === "intermediate"
+          ? 50
+          : 30;
   let low: number;
   let high: number;
   // Ensure even difference so midpoint is an integer
   do {
     low = randInt(0, rangeMax - 4);
-    const gap = randInt(2, difficulty === "easy" ? 4 : 8) * 2; // always even
+    const gap = randInt(2, difficulty === "beginner" ? 4 : 8) * 2; // always even
     high = low + gap;
   } while (high > rangeMax);
   const answer = (low + high) / 2;
@@ -1182,7 +1375,13 @@ function makeNumberLineCloserQuestion(
   difficulty: Difficulty,
 ): NumberLineCloserQuestion {
   const rangeMax =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 20
+        : difficulty === "intermediate"
+          ? 50
+          : 30;
   let anchorA: number;
   let anchorB: number;
   let target: number;
@@ -1216,7 +1415,13 @@ function makeNumberLineHopsQuestion(
   difficulty: Difficulty,
 ): NumberLineHopsQuestion {
   const rangeMax =
-    difficulty === "easy" ? 20 : difficulty === "medium" ? 30 : 50;
+    difficulty === "beginner"
+      ? 20
+      : difficulty === "medium"
+        ? 30
+        : difficulty === "intermediate"
+          ? 100
+          : 50;
   let start: number;
   let hops: number;
   let hopSize: number;
@@ -1225,11 +1430,19 @@ function makeNumberLineHopsQuestion(
   do {
     start = randInt(0, Math.floor(rangeMax / 3));
     hops =
-      difficulty === "easy" ? 2 : randInt(2, difficulty === "hard" ? 5 : 3);
+      difficulty === "beginner"
+        ? 2
+        : randInt(
+            2,
+            difficulty === "hard" || difficulty === "intermediate" ? 5 : 3,
+          );
     hopSize =
-      difficulty === "easy"
+      difficulty === "beginner"
         ? randInt(1, 2)
-        : randInt(1, difficulty === "hard" ? 5 : 3);
+        : randInt(
+            1,
+            difficulty === "hard" || difficulty === "intermediate" ? 5 : 3,
+          );
     answer = start + hops * hopSize;
     attempts++;
   } while (attempts < 100 && answer > rangeMax);
@@ -1264,8 +1477,15 @@ function scatterDots(count: number, minDist: number): [number, number][] {
 
 function makeEstimationBarQuestion(difficulty: Difficulty): EstimationQuestion {
   const maxHeight =
-    difficulty === "easy" ? 20 : difficulty === "medium" ? 35 : 50;
-  const roundTo = difficulty === "hard" ? 10 : 5;
+    difficulty === "beginner"
+      ? 20
+      : difficulty === "medium"
+        ? 35
+        : difficulty === "intermediate"
+          ? 80
+          : 50;
+  const roundTo =
+    difficulty === "hard" || difficulty === "intermediate" ? 10 : 5;
   const barValues = [
     randInt(Math.floor(maxHeight * 0.15), maxHeight),
     randInt(Math.floor(maxHeight * 0.15), maxHeight),
@@ -1334,10 +1554,14 @@ export function makeEstimationQuestion(
   let roundTo: number;
   let choiceStep: number;
 
-  if (difficulty === "easy") {
+  if (difficulty === "beginner") {
     dotCount = randInt(5, 15);
     roundTo = 5;
     choiceStep = 5;
+  } else if (difficulty === "intermediate") {
+    dotCount = randInt(50, 100);
+    roundTo = 10;
+    choiceStep = 10;
   } else if (difficulty === "medium") {
     dotCount = randInt(15, 30);
     roundTo = 5;
@@ -1348,7 +1572,8 @@ export function makeEstimationQuestion(
     choiceStep = 10;
   }
 
-  const minDist = difficulty === "hard" ? 5 : 8;
+  const minDist =
+    difficulty === "hard" || difficulty === "intermediate" ? 5 : 8;
   const dots = scatterDots(dotCount, minDist);
   const actualCount = dots.length;
 
@@ -1385,7 +1610,7 @@ export function generateQuestion(
   switch (catId) {
     case "number": {
       const r = Math.random();
-      if (difficulty !== "hard" && r < 0.25)
+      if (difficulty !== "hard" && difficulty !== "intermediate" && r < 0.25)
         return makeOddEvenQuestion(difficulty);
       if (r < 0.45) return makeNumberQuestion(difficulty);
       if (r < 0.6) return makeNumberSenseTextQuestion(difficulty);
@@ -1393,24 +1618,38 @@ export function generateQuestion(
       return makeGroupingQuestion(difficulty);
     }
     case "arith": {
-      if (difficulty === "hard" && Math.random() < 0.25) {
+      if (
+        (difficulty === "hard" || difficulty === "intermediate") &&
+        Math.random() < 0.3
+      ) {
         return makeArithMultiplyQuestion(difficulty);
       }
-      if (difficulty === "easy") {
+      if (difficulty === "beginner") {
         return makeArithQuestion(difficulty);
+      }
+      if (difficulty === "intermediate") {
+        return Math.random() < 0.6
+          ? makeArithQuestion(difficulty)
+          : makeArithMultiplyQuestion(difficulty);
       }
       return Math.random() < 0.5
         ? makeArithQuestion(difficulty)
         : makeArithScaffoldQuestion();
     }
     case "money": {
-      if (difficulty === "hard" && Math.random() < 0.2) {
+      if (
+        (difficulty === "hard" || difficulty === "intermediate") &&
+        Math.random() < 0.25
+      ) {
         return makeMoneyReceiptQuestion();
       }
-      if (difficulty === "hard" && Math.random() < 0.3) {
+      if (
+        (difficulty === "hard" || difficulty === "intermediate") &&
+        Math.random() < 0.35
+      ) {
         return makeMoneyChangeQuestion(difficulty);
       }
-      if (difficulty === "hard") {
+      if (difficulty === "hard" || difficulty === "intermediate") {
         return Math.random() < 0.5
           ? makeMoneyQuestion(difficulty)
           : makeMoneyBillsQuestion();
@@ -1421,8 +1660,18 @@ export function generateQuestion(
     }
     case "time": {
       const r = Math.random();
-      if (difficulty === "hard" && r < 0.35) return makeTimeElapsedQuestion();
-      if (difficulty === "hard" && r < 0.55) return makeTimeScheduleQuestion();
+      if (
+        (difficulty === "hard" || difficulty === "intermediate") &&
+        r < 0.35
+      ) {
+        return makeTimeElapsedQuestion(difficulty);
+      }
+      if (
+        (difficulty === "hard" || difficulty === "intermediate") &&
+        r < 0.55
+      ) {
+        return makeTimeScheduleQuestion();
+      }
       if (difficulty === "medium" && r < 0.25) return makeTimeElapsedQuestion();
       if (difficulty === "medium" && r < 0.4) return makeTimeScheduleQuestion();
       return r < 0.6
@@ -1435,11 +1684,18 @@ export function generateQuestion(
         : makePlaceValueQuestion(difficulty);
     case "numberline": {
       const r = Math.random();
-      if (difficulty === "easy") {
-        // easy: original identify + closer
+      if (difficulty === "beginner") {
+        // beginner: original identify + closer
         return r < 0.5
           ? makeNumberLineQuestion(difficulty)
           : makeNumberLineCloserQuestion(difficulty);
+      }
+      if (difficulty === "intermediate") {
+        // intermediate: all four types biased toward harder ones
+        if (r < 0.2) return makeNumberLineQuestion(difficulty);
+        if (r < 0.45) return makeNumberLineHalfwayQuestion(difficulty);
+        if (r < 0.65) return makeNumberLineCloserQuestion(difficulty);
+        return makeNumberLineHopsQuestion(difficulty);
       }
       if (difficulty === "medium") {
         // medium: all four types
@@ -1799,7 +2055,7 @@ const SCENARIOS_ADDITIONAL_HARD: SeqScenario[] = [
 
 function makeStepSeqQuestion(difficulty: Difficulty): StepSeqQuestion {
   const pool =
-    difficulty === "easy"
+    difficulty === "beginner"
       ? [...SCENARIOS_EASY, ...SCENARIOS_ADDITIONAL_EASY]
       : difficulty === "medium"
         ? [...SCENARIOS_MEDIUM, ...SCENARIOS_ADDITIONAL_MEDIUM]
@@ -1876,7 +2132,7 @@ function makeFractionBarSVG(
 function makeFractionsQuestion(difficulty: Difficulty): FractionsQuestion {
   const r = Math.random();
 
-  if (difficulty === "easy") {
+  if (difficulty === "beginner") {
     // Identify shaded fraction — halves or quarters
     const configs = [
       { n: 1, d: 2 },
@@ -1899,6 +2155,128 @@ function makeFractionsQuestion(difficulty: Difficulty): FractionsQuestion {
       choices,
       answer,
       explanation: `That's right! ${n} out of ${d} equal parts are shaded, so the fraction is ${n}/${d}.`,
+    };
+  }
+
+  if (difficulty === "intermediate") {
+    // Adding fractions with unlike denominators or comparing mixed numbers
+    const intermR = Math.random();
+    if (intermR < 0.4) {
+      // Add fractions with unlike denominators
+      const addSets: { prompt: string; correct: string; choices: string[] }[] =
+        [
+          {
+            prompt: "What is 1/2 + 1/3?",
+            correct: "5/6",
+            choices: shuffle(["5/6", "2/5", "2/6", "1/6"]),
+          },
+          {
+            prompt: "What is 1/4 + 1/2?",
+            correct: "3/4",
+            choices: shuffle(["3/4", "2/6", "1/3", "2/8"]),
+          },
+          {
+            prompt: "What is 2/3 + 1/6?",
+            correct: "5/6",
+            choices: shuffle(["5/6", "3/9", "1/2", "7/6"]),
+          },
+          {
+            prompt: "What is 1/3 + 1/4?",
+            correct: "7/12",
+            choices: shuffle(["7/12", "2/7", "5/12", "3/7"]),
+          },
+          {
+            prompt: "What is 3/4 − 1/2?",
+            correct: "1/4",
+            choices: shuffle(["1/4", "1/2", "2/4", "1/8"]),
+          },
+          {
+            prompt: "What is 5/6 − 1/3?",
+            correct: "1/2",
+            choices: shuffle(["1/2", "4/3", "1/3", "5/9"]),
+          },
+        ];
+      const eq = addSets[Math.floor(Math.random() * addSets.length)];
+      const answer = eq.choices.indexOf(eq.correct);
+      const promptMatch = eq.prompt.match(/(\d+\/\d+)/);
+      const [promptN, promptD] = promptMatch
+        ? promptMatch[1].split("/").map(Number)
+        : [1, 2];
+      return {
+        type: "fractions",
+        prompt: eq.prompt,
+        svgA: makeFractionBarSVG(promptN, promptD),
+        choices: eq.choices,
+        answer,
+        explanation:
+          "Correct! To add or subtract fractions with different denominators, find a common denominator first.",
+      };
+    }
+    if (intermR < 0.7) {
+      // Compare fractions with unlike denominators
+      const pairs: [number, number, number, number][] = [
+        [2, 3, 3, 4],
+        [3, 5, 5, 8],
+        [5, 6, 7, 8],
+        [2, 5, 3, 8],
+        [3, 4, 5, 6],
+      ];
+      const [n1, d1, n2, d2] = pairs[Math.floor(Math.random() * pairs.length)];
+      const v1 = n1 / d1;
+      const v2 = n2 / d2;
+      const correct = v1 > v2 ? "The first bar" : "The second bar";
+      const choices = shuffle([
+        "The first bar",
+        "The second bar",
+        "They are equal",
+        "Can't tell",
+      ]);
+      const answer = choices.indexOf(correct);
+      const biggerFrac = v1 > v2 ? `${n1}/${d1}` : `${n2}/${d2}`;
+      return {
+        type: "fractions",
+        prompt: "Which fraction shows a bigger amount?",
+        svgA: makeFractionBarSVG(n1, d1),
+        svgB: makeFractionBarSVG(n2, d2),
+        labelA: `${n1}/${d1}`,
+        labelB: `${n2}/${d2}`,
+        choices,
+        answer,
+        explanation: `${biggerFrac} is the larger fraction. Converting to a common denominator makes it easier to compare.`,
+      };
+    }
+    // Equivalent fractions with larger denominators
+    const equivSets: { prompt: string; correct: string; choices: string[] }[] =
+      [
+        {
+          prompt: "Which fraction is equivalent to 2/3?",
+          correct: "8/12",
+          choices: shuffle(["8/12", "6/10", "4/8", "5/9"]),
+        },
+        {
+          prompt: "Which fraction is equivalent to 3/4?",
+          correct: "9/12",
+          choices: shuffle(["9/12", "6/8", "7/10", "5/8"]),
+        },
+        {
+          prompt: "Which fraction is equivalent to 4/5?",
+          correct: "8/10",
+          choices: shuffle(["8/10", "6/8", "3/4", "7/9"]),
+        },
+      ];
+    const eq = equivSets[Math.floor(Math.random() * equivSets.length)];
+    const answer = eq.choices.indexOf(eq.correct);
+    return {
+      type: "fractions",
+      prompt: eq.prompt,
+      svgA: makeFractionBarSVG(
+        ...((eq.prompt.match(/(\d+\/\d+)\?/) || ["", "2/3"])[1]
+          .split("/")
+          .map(Number) as [number, number]),
+      ),
+      choices: eq.choices,
+      answer,
+      explanation: `Correct! ${eq.correct} is the same amount — equivalent fractions multiply both numerator and denominator by the same number.`,
     };
   }
 
@@ -2083,6 +2461,14 @@ export interface MeasurementQuestion {
 }
 
 function makeMeasurementQuestion(difficulty: Difficulty): MeasurementQuestion {
+  if (difficulty === "intermediate") {
+    // Unit conversion questions for intermediate
+    const r = Math.random();
+    if (r < 0.4) return makeLengthRulerQuestion(difficulty);
+    if (r < 0.6) return makeLengthCompareQuestion(difficulty);
+    if (r < 0.8) return makeWeightScaleQuestion(difficulty);
+    return makeVolumeCupQuestion(difficulty);
+  }
   const r = Math.random();
   if (r < 0.25) return makeLengthRulerQuestion(difficulty);
   if (r < 0.5) return makeLengthCompareQuestion(difficulty);
@@ -2093,7 +2479,13 @@ function makeMeasurementQuestion(difficulty: Difficulty): MeasurementQuestion {
 
 function makeLengthRulerQuestion(difficulty: Difficulty): MeasurementQuestion {
   const rulerMax =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 20
+        : difficulty === "intermediate"
+          ? 100
+          : 30;
   const rulerCm = randInt(1, rulerMax - 1);
   const correct = `${rulerCm} cm`;
   const distractors = makeDistractors(rulerCm, 3, 1, rulerMax).map(
@@ -2116,9 +2508,19 @@ function makeLengthCompareQuestion(
   difficulty: Difficulty,
 ): MeasurementQuestion {
   const maxVal =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 30 : 100;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 30
+        : difficulty === "intermediate"
+          ? 500
+          : 100;
   const unit =
-    difficulty === "hard" ? (Math.random() < 0.5 ? "m" : "cm") : "cm";
+    difficulty === "hard" || difficulty === "intermediate"
+      ? Math.random() < 0.5
+        ? "m"
+        : "cm"
+      : "cm";
   const OBJECTS = [
     "pencil",
     "ribbon",
@@ -2177,8 +2579,14 @@ function makeWeightCompareQuestion(
   ];
   const [labelA, labelB] = shuffle([...ITEMS]).slice(0, 2);
   const maxVal =
-    difficulty === "easy" ? 200 : difficulty === "medium" ? 500 : 1000;
-  const unit = "g";
+    difficulty === "beginner"
+      ? 200
+      : difficulty === "medium"
+        ? 500
+        : difficulty === "intermediate"
+          ? 5000
+          : 1000;
+  const unit = difficulty === "intermediate" ? "g" : "g";
   let valA: number;
   let valB: number;
   do {
@@ -2209,9 +2617,27 @@ function makeWeightCompareQuestion(
 
 function makeWeightScaleQuestion(difficulty: Difficulty): MeasurementQuestion {
   const scaleMax =
-    difficulty === "easy" ? 10 : difficulty === "medium" ? 50 : 100;
-  const unit = difficulty === "easy" ? "kg" : "g";
-  const step = difficulty === "easy" ? 1 : difficulty === "medium" ? 5 : 10;
+    difficulty === "beginner"
+      ? 10
+      : difficulty === "medium"
+        ? 50
+        : difficulty === "intermediate"
+          ? 500
+          : 100;
+  const unit =
+    difficulty === "beginner"
+      ? "kg"
+      : difficulty === "intermediate"
+        ? "g"
+        : "g";
+  const step =
+    difficulty === "beginner"
+      ? 1
+      : difficulty === "medium"
+        ? 5
+        : difficulty === "intermediate"
+          ? 25
+          : 10;
   const scaleValue = randInt(1, Math.floor(scaleMax / step)) * step;
   const correct = `${scaleValue} ${unit}`;
   const distractors = makeDistractors(scaleValue, 3, step, scaleMax).map(
@@ -2233,8 +2659,21 @@ function makeWeightScaleQuestion(difficulty: Difficulty): MeasurementQuestion {
 
 function makeVolumeCupQuestion(difficulty: Difficulty): MeasurementQuestion {
   const cupMaxMl =
-    difficulty === "easy" ? 250 : difficulty === "medium" ? 500 : 1000;
-  const step = difficulty === "easy" ? 50 : difficulty === "medium" ? 100 : 200;
+    difficulty === "beginner"
+      ? 250
+      : difficulty === "medium"
+        ? 500
+        : difficulty === "intermediate"
+          ? 2000
+          : 1000;
+  const step =
+    difficulty === "beginner"
+      ? 50
+      : difficulty === "medium"
+        ? 100
+        : difficulty === "intermediate"
+          ? 250
+          : 200;
   const fills = Array.from(
     { length: Math.floor(cupMaxMl / step) - 1 },
     (_, i) => (i + 1) * step,

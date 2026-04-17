@@ -38,7 +38,7 @@ export type CatId =
   | "fractions"
   | "measurement";
 
-export type Difficulty = "easy" | "medium" | "hard";
+export type Difficulty = "beginner" | "intermediate" | "medium" | "hard";
 
 export type Screen =
   | "landing"
@@ -460,9 +460,9 @@ function AppContent() {
 
       if (pct < 0.34)
         return {
-          difficulty: "easy" as const,
+          difficulty: "beginner" as const,
           reason:
-            "Based on your assessment, Easy might be a good starting point.",
+            "Based on your assessment, Beginner might be a good starting point.",
         };
       if (pct < 0.67)
         return {

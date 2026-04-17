@@ -4,7 +4,7 @@ interface Props {
   catId: Exclude<CatId, "calm">;
   onSelect: (difficulty: Difficulty) => void;
   onBack: () => void;
-  suggestedDifficulty?: "easy" | "medium" | "hard";
+  suggestedDifficulty?: Difficulty;
   suggestionReason?: string;
 }
 
@@ -70,24 +70,29 @@ const DIFFICULTY_OPTIONS: {
   description: string;
 }[] = [
   {
-    id: "easy",
-    label: "Easy",
-    description: "Smaller numbers, gentle pacing",
+    id: "beginner",
+    label: "Beginner",
+    description: "Simple counting, basic addition, small numbers",
+  },
+  {
+    id: "intermediate",
+    label: "Intermediate",
+    description: "High school warm-up — bigger numbers, challenging patterns",
   },
   {
     id: "medium",
     label: "Medium",
-    description: "A bit more challenge",
+    description: "A bit more challenge — two-digit numbers, mixed operations",
   },
   {
     id: "hard",
     label: "Hard",
-    description: "Larger numbers, new question types",
+    description: "Larger numbers, new question types, trickier patterns",
   },
 ];
 
 function DifficultyIcon({ id }: { id: Difficulty }) {
-  if (id === "easy") {
+  if (id === "beginner") {
     return (
       <svg
         width="20"
@@ -104,6 +109,27 @@ function DifficultyIcon({ id }: { id: Difficulty }) {
           strokeWidth="2"
           fill="none"
         />
+      </svg>
+    );
+  }
+  if (id === "intermediate") {
+    return (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+        style={{ flexShrink: 0 }}
+      >
+        <circle
+          cx="8"
+          cy="8"
+          r="6"
+          stroke="currentColor"
+          strokeWidth="2"
+          fill="none"
+        />
+        <circle cx="8" cy="8" r="2" fill="currentColor" />
       </svg>
     );
   }
@@ -222,8 +248,12 @@ export default function DifficultyScreen({
                 onClick={() => onSelect(opt.id)}
                 className="w-full rounded-xl border transition-colors text-left min-h-[72px] md:min-h-[80px] px-5 py-4 flex items-center gap-4"
                 style={{
-                  borderColor: colors.border,
-                  backgroundColor: "transparent",
+                  borderColor:
+                    suggestedDifficulty === opt.id
+                      ? colors.accent
+                      : colors.border,
+                  backgroundColor:
+                    suggestedDifficulty === opt.id ? colors.bg : "transparent",
                   color: colors.accent,
                 }}
                 onMouseEnter={(e) => {
@@ -234,9 +264,11 @@ export default function DifficultyScreen({
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLButtonElement).style.backgroundColor =
-                    "transparent";
+                    suggestedDifficulty === opt.id ? colors.bg : "transparent";
                   (e.currentTarget as HTMLButtonElement).style.borderColor =
-                    colors.border;
+                    suggestedDifficulty === opt.id
+                      ? colors.accent
+                      : colors.border;
                 }}
               >
                 <span className="w-6 flex items-center justify-center flex-shrink-0">

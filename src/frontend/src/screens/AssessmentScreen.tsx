@@ -1,16 +1,23 @@
 import { useMemo, useRef, useState } from "react";
-import type { CatId } from "../App";
+import type { CatId, Difficulty } from "../App";
 import type { QuestionData } from "../game/questions";
 import { generateQuestion, makeEstimationQuestion } from "../game/questions";
 import ArithQuestion from "../modules/ArithQuestion";
 import EstimationQuestion from "../modules/EstimationQuestion";
+import FractionsQuestion from "../modules/FractionsQuestion";
 import MagnitudeQuestion from "../modules/MagnitudeQuestion";
+import MeasurementQuestion from "../modules/MeasurementQuestion";
+import MoneyBillsQuestion from "../modules/MoneyBillsQuestion";
+import MoneyChangeQuestion from "../modules/MoneyChangeQuestion";
+import MoneyReceiptQuestion from "../modules/MoneyReceiptQuestion";
 import NumberLineQuestion from "../modules/NumberLineQuestion";
 import NumberQuestion from "../modules/NumberQuestion";
 import NumberSenseTextQuestion from "../modules/NumberSenseTextQuestion";
 import OddEvenQuestion from "../modules/OddEvenQuestion";
 import PlaceValueQuestion from "../modules/PlaceValueQuestion";
 import SequenceQuestion from "../modules/SequenceQuestion";
+import StepSeqQuestion from "../modules/StepSeqQuestion";
+import TimeElapsedQuestion from "../modules/TimeElapsedQuestion";
 import TimeQuestion from "../modules/TimeQuestion";
 import TimeScheduleQuestion from "../modules/TimeScheduleQuestion";
 
@@ -59,12 +66,18 @@ const AREAS: AreaDef[] = [
   },
 ];
 
-function makeMagnitudeQ(): QuestionData {
+function makeMagnitudeQ(difficulty: Difficulty): QuestionData {
+  const maxVal =
+    difficulty === "intermediate" || difficulty === "hard"
+      ? 200
+      : difficulty === "medium"
+        ? 50
+        : 20;
   let a: number;
   let b: number;
   do {
-    a = Math.floor(Math.random() * 20) + 1;
-    b = Math.floor(Math.random() * 20) + 1;
+    a = Math.floor(Math.random() * maxVal) + 1;
+    b = Math.floor(Math.random() * maxVal) + 1;
   } while (Math.abs(a - b) < 2 || a === b);
   return {
     type: "magnitude",
@@ -74,20 +87,28 @@ function makeMagnitudeQ(): QuestionData {
   };
 }
 
-function generateAssessmentQuestions(): QuestionData[] {
+function generateAssessmentQuestions(difficulty: Difficulty): QuestionData[] {
+  // For intermediate+ use harder base questions
+  const baseLevel: Difficulty =
+    difficulty === "intermediate" || difficulty === "hard"
+      ? "medium"
+      : "beginner";
+  const topLevel: Difficulty =
+    difficulty === "intermediate" ? "intermediate" : difficulty;
+
   return [
-    generateQuestion("number", "easy"), // 0
-    generateQuestion("number", "easy"), // 1
-    generateQuestion("number", "easy"), // 2
-    makeMagnitudeQ(), // 3
-    generateQuestion("numberline", "easy"), // 4
-    generateQuestion("arith", "easy"), // 5
-    generateQuestion("arith", "medium"), // 6
-    generateQuestion("sequence", "easy"), // 7
-    generateQuestion("sequence", "easy"), // 8
-    generateQuestion("time", "easy"), // 9
-    makeEstimationQuestion("easy"), // 10
-    generateQuestion("number", "easy"), // 11
+    generateQuestion("number", baseLevel), // 0
+    generateQuestion("number", baseLevel), // 1
+    generateQuestion("number", baseLevel), // 2
+    makeMagnitudeQ(difficulty), // 3
+    generateQuestion("numberline", baseLevel), // 4
+    generateQuestion("arith", baseLevel), // 5
+    generateQuestion("arith", topLevel), // 6
+    generateQuestion("sequence", baseLevel), // 7
+    generateQuestion("sequence", baseLevel), // 8
+    generateQuestion("time", baseLevel), // 9
+    makeEstimationQuestion(topLevel), // 10
+    generateQuestion("number", baseLevel), // 11
   ];
 }
 
@@ -107,7 +128,12 @@ const MODULE_NAMES: Record<string, string> = {
 type Phase = "questions" | "results";
 
 export default function AssessmentScreen({ onHome, onStartModule }: Props) {
-  const questions = useMemo(() => generateAssessmentQuestions(), []);
+  // Default difficulty for assessment is beginner
+  const [assessDifficulty] = useState<Difficulty>("beginner");
+  const questions = useMemo(
+    () => generateAssessmentQuestions(assessDifficulty),
+    [assessDifficulty],
+  );
   const [phase, setPhase] = useState<Phase>("questions");
   const [currentQ, setCurrentQ] = useState(0);
   const [responses, setResponses] = useState<boolean[]>([]);
@@ -160,7 +186,23 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
             {...commonProps}
           />
         );
+      case "grouping":
+        return (
+          <MagnitudeQuestion
+            key={`aq-${currentQ}`}
+            question={{
+              type: "magnitude",
+              a: q.groupA,
+              b: q.groupB,
+              answer: q.groupA > q.groupB ? "a" : "b",
+            }}
+            {...commonProps}
+          />
+        );
       case "numberline":
+      case "numberline_halfway":
+      case "numberline_closer":
+      case "numberline_hops":
         return (
           <NumberLineQuestion
             key={`aq-${currentQ}`}
@@ -179,6 +221,21 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
             question={{
               type: "arith",
               op: q.op,
+              a: q.a,
+              b: q.b,
+              answer: q.answer,
+              choices: q.choices,
+            }}
+            {...commonProps}
+          />
+        );
+      case "arith_multiply":
+        return (
+          <ArithQuestion
+            key={`aq-${currentQ}`}
+            question={{
+              type: "arith",
+              op: "+",
               a: q.a,
               b: q.b,
               answer: q.answer,
@@ -221,6 +278,22 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
             {...commonProps}
           />
         );
+      case "time_elapsed":
+        return (
+          <TimeElapsedQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "time_schedule":
+        return (
+          <TimeScheduleQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
       case "estimation":
         return (
           <EstimationQuestion
@@ -245,9 +318,64 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
             {...commonProps}
           />
         );
-      case "time_schedule":
+      case "money":
         return (
-          <TimeScheduleQuestion
+          <EstimationQuestion
+            key={`aq-${currentQ}`}
+            question={{
+              type: "estimation",
+              variant: "dots",
+              dotCount: q.total,
+              dots: [],
+              answerLabel: `${q.total}c`,
+              choices: q.choices.map((c) => `${c}c`),
+            }}
+            {...commonProps}
+          />
+        );
+      case "money_bills":
+        return (
+          <MoneyBillsQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "money_change":
+        return (
+          <MoneyChangeQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "money_receipt":
+        return (
+          <MoneyReceiptQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "stepseq":
+        return (
+          <StepSeqQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "fractions":
+        return (
+          <FractionsQuestion
+            key={`aq-${currentQ}`}
+            question={q}
+            {...commonProps}
+          />
+        );
+      case "measurement":
+        return (
+          <MeasurementQuestion
             key={`aq-${currentQ}`}
             question={q}
             {...commonProps}
@@ -255,13 +383,21 @@ export default function AssessmentScreen({ onHome, onStartModule }: Props) {
         );
       default:
         return (
-          <div
+          <NumberQuestion
             key={`aq-${currentQ}`}
-            className="py-8 text-center"
-            style={{ color: "oklch(0.50 0.02 60)" }}
-          >
-            Question {currentQ + 1}
-          </div>
+            question={{
+              type: "number",
+              value: 3,
+              dots: [
+                [28, 25],
+                [72, 25],
+                [50, 72],
+              ],
+              choices: [1, 2, 3, 4],
+              flashDuration: 2000,
+            }}
+            {...commonProps}
+          />
         );
     }
   };
